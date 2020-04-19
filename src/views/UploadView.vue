@@ -1,21 +1,22 @@
 <template>
-  <div id="ListView">
-    <SeriesList />
+  <div id="UploadView">
+    <Upload />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import SeriesList from '@/components/SeriesList.vue'
+import Upload from '@/components/Upload.vue'
 export default {
-  name: "SeriesListView",
+  name: "EpisodesView",
   components: {
-    SeriesList
+    Upload
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  #ListView {
+  #UploadView {
     padding-top: 5rem;
   }
 </style>

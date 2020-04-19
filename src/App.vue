@@ -1,12 +1,55 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/serieslist">List</router-link>
-    </div>
+  <v-app>
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      clipped>
+      <v-list dense>
+        <v-list-item link :to="{path:'/'}">
+          <v-list-item-content>
+            <v-icon>fa-home</v-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link :to="{path:'/serieslist'}">
+          <v-list-item-content>
+            <v-icon>fa-list</v-icon>
+            <v-list-item-title>List</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link :to="{path:'/upload'}">
+          <v-list-item-content>
+            <v-icon>fa-upload</v-icon>
+            <v-list-item-title>Upload</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar
+      app
+      clipped-left>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-app-bar>
     <router-view/>
-  </div>
+  </v-app>
 </template>
+
+
+<script>
+  export default {
+    props: {
+      source: String,
+    },
+    data: () => ({
+      drawer: false,
+    }),
+    created () {
+      this.$vuetify.theme.dark = true
+    },
+  }
+</script>
+
 
 <style lang="scss">
 #app {
@@ -14,19 +57,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  color: #cbe6fb;
+  background-color: rgb(71, 71, 71);
 }
 </style>

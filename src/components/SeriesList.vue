@@ -7,7 +7,7 @@
             <v-card
               v-for="Series in Serieses"
               :key="Series.id"
-              class="ma-3 pb-12 zoomIn"
+              class="ma-3 pb-8 zoomIn"
               dark>
               <v-img
                 height="200"
@@ -15,37 +15,34 @@
                 :src="Series.thumb">
               </v-img>
               <p class="title pt-6">{{ Series.name }}</p>
+              <v-btn
+              :to="{path:`/episodes/${Series.id}`}"
+              color="red">
+                Watch it!
+              </v-btn>
             </v-card>
           </v-row>
         </v-col>
       </v-row>
       </v-container>
+      <router-view/>
     </v-app>
 </template>
 
 <script>
+import {Fetchy} from '@/fetch/getSeries.js'
 export default {
   name: "SeriesList",
   data() {
     return {
-      Serieses: [
-        {name: "KonoSuba", id: 1, thumb: "https://blacknerdproblems.com/wp-content/uploads/2016/04/Konosuba.jpg"},
-        {name: "Steins;Gate", id: 2, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 3, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 4, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 5, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 6, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 7, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 8, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 9, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 10, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 11, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 12, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 12, thumb: "https://i.redd.it/dvm703m3baf01.jpg"},
-        {name: "Steins;Gate", id: 14, thumb: "https://i.redd.it/dvm703m3baf01.jpg"}
-        ]
+      Serieses: []
     }
   },
+  mounted() {
+    Fetchy.getAllSeries().then(data => {
+      this.Serieses = data
+    })
+  }
 }
 </script>
 
