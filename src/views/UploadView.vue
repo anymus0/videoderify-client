@@ -16,7 +16,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  #UploadView {
-    padding-top: 5rem;
-  }
+
 </style>

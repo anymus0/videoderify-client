@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import {Fetchy} from '@/fetch/getSeries.js'
+import {Fetchy} from '@/fetch/Fetchy.js'
 export default {
   name: "SeriesList",
   data() {
@@ -39,7 +39,7 @@ export default {
     }
   },
   mounted() {
-    Fetchy.getAllSeries().then(data => {
+    Fetchy.Get('http://localhost:3000/serieses').then(data => {
       this.Serieses = data
     })
   }

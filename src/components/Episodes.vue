@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import {Fetchy} from '@/fetch/getSeries.js'
+import {Fetchy} from '@/fetch/Fetchy.js'
 export default {
   name: "Episodes",
   data() {
@@ -20,7 +20,7 @@ export default {
     
   },
   mounted() {
-    Fetchy.getSeries(this.$route.params.id).then(data => this.Series = data)
+    Fetchy.Get(`http://localhost:3000/serieses/${this.$route.params.id}`).then(data => this.Series = data)
   }
 }
 </script>
