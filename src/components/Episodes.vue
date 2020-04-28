@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container fluid>
-      <h1>Name: {{ Series.name }}</h1>
+      <h1>{{ Series.name }}</h1>
     </v-container>
     <router-view/>
   </v-app>
@@ -20,7 +20,8 @@ export default {
     
   },
   mounted() {
-    Fetchy.Get(`http://localhost:3000/serieses/${this.$route.params.id}`).then(data => this.Series = data)
+    Fetchy.Get(`http://localhost:3000/serieses/${this.$route.params.id}`)
+    .then(data => this.Series = data)
   }
 }
 </script>

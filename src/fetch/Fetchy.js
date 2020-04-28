@@ -19,16 +19,17 @@ class Fetchy {
     try {
       const options = {
         method: 'POST',
-        body: JSON.stringify(obj),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(obj)
       }
-      console.log(options)
-      const rawResponse = await window.fetch(link, options)
-      console.log(rawResponse)
+      const response = await window.fetch(link, options)
+      const data = await response.json()
+      return data
     } catch (err) {
       console.log(`Could not POST, ERROR:  ${err}`)
+      return err
     }
   }
 }

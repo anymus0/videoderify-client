@@ -12,21 +12,21 @@
           </v-card-subtitle>
           <v-form justify-center ref="form">
             <v-text-field
-              name="name"
+              v-model="name"
               label="Title"
               single-line
             >
             </v-text-field>
 
             <v-textarea
-              name="description"
+              v-model="description"
               label="Description/Note"
               single-line
             >
             </v-textarea>
 
             <v-text-field
-              name="thumb"
+              v-model="thumb"
               label="Thumbnail image link"
               single-line
             >
@@ -55,7 +55,8 @@ export default {
   data: () => ({
     name: '',
     description: '',
-    thumb: ''
+    thumb: '',
+    ResObj: {}
   }),
   methods: {
     upload() {
@@ -65,8 +66,9 @@ export default {
         description: this.description,
         thumb: this.thumb
       }
-      Fetchy.postSeries(NewSeriesObj)
-      this.$refs.form.reset()
+      Fetchy.Post('http://localhost:3000/upload/add', NewSeriesObj)
+      .then(data => this.ResObj = data)
+      .then(this.$refs.form.reset())
     }
   }
 }
