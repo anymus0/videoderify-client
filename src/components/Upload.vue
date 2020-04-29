@@ -4,33 +4,37 @@
       <v-card
         max-width="300"
       >
+        <v-row>
+          <v-col class="ma-7">
+            <v-card-subtitle class="pb-0 title">
+              Give us some details!
+            </v-card-subtitle>
+            <v-form justify-center ref="form">
+              <v-text-field
+                v-model="name"
+                label="Title"
+                single-line
+                name="name"
+              >
+              </v-text-field>
 
-      <v-row>
-        <v-col class="ma-7">
-          <v-card-subtitle class="pb-0 title">
-            Give us some details!
-          </v-card-subtitle>
-          <v-form justify-center ref="form">
-            <v-text-field
-              v-model="name"
-              label="Title"
-              single-line
-            >
-            </v-text-field>
+              <v-textarea
+                v-model="description"
+                label="Description/Note"
+                single-line
+                name="description"
+              >
+              </v-textarea>
 
-            <v-textarea
-              v-model="description"
-              label="Description/Note"
-              single-line
-            >
-            </v-textarea>
+              <v-text-field
+                v-model="thumb"
+                label="Thumbnail image link"
+                single-line
+                name="thumb"
+              >
+              </v-text-field>
 
-            <v-text-field
-              v-model="thumb"
-              label="Thumbnail image link"
-              single-line
-            >
-            </v-text-field>
+              <v-file-input name="Files" @change="onAddFiles" color="red" counter small-chips multiple label="File input"></v-file-input>
 
               <v-btn
                 color="red"
@@ -39,37 +43,52 @@
               >
                 Upload
               </v-btn>
-          </v-form>
-        </v-col>
-      </v-row>
-
+            </v-form>
+          </v-col>
+        </v-row>
       </v-card>
     </v-layout>
   </v-app>
 </template>
 
 <script>
+
 import {Fetchy} from '@/fetch/Fetchy.js'
 export default {
   name: "Upload",
+  components: {
+    //FilePond
+  },
   data: () => ({
     name: '',
     description: '',
     thumb: '',
-    ResObj: {}
+    ResObj: {},
+    Files: []
   }),
   methods: {
+    onAddFiles(files) {
+      files.forEach((file) => {
+          this.Files.push(file)
+      })
+    },
     upload() {
-      // send an object to the API
-      const NewSeriesObj = {
-        name: this.name,
-        description: this.description,
-        thumb: this.thumb
-      }
-      Fetchy.Post('http://localhost:3000/upload/add', NewSeriesObj)
+      // create a new form that will be sent to the API
+      const formData = new FormData()
+      // add files to the form data
+      this.Files.forEach(file => {
+        formData.append("Files", file, file.name)
+      })
+      // additional datas
+      formData.append("name", this.name)
+      formData.append("description", this.description)
+      formData.append("thumb", this.thumb)
+
+      Fetchy.PostFiles('http://localhost:3000/upload/add', formData)
       .then(data => this.ResObj = data)
       .then(this.$refs.form.reset())
-    }
+      .then(this.Files = [])
+    },
   }
 }
 </script>

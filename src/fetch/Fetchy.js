@@ -1,4 +1,3 @@
-// REWORK: write post and get once, ue parameters!
 class Fetchy {
   static async Get (link) {
     try {
@@ -15,14 +14,14 @@ class Fetchy {
     }
   }
 
-  static async Post (link, obj) {
+  static async PostFiles (link, form) {
     try {
       const options = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          Accept: 'application/json'
         },
-        body: JSON.stringify(obj)
+        body: form
       }
       const response = await window.fetch(link, options)
       const data = await response.json()
