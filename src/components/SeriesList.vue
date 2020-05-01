@@ -16,8 +16,8 @@
               </v-img>
               <p class="title pt-6">{{ Series.name }}</p>
               <v-btn
-              :to="{path:`/episodes/${Series.id}`}"
-              color="red">
+                :to="{path:`/episodes/${Series.id}`}"
+                color="red">
                 Watch it!
               </v-btn>
             </v-card>

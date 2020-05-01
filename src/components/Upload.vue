@@ -72,9 +72,9 @@ export default {
           this.Files.push(file)
       })
     },
-    upload() {
+    async upload() {
       // create a new form that will be sent to the API
-      const formData = new FormData()
+      const formData = await new FormData()
       // add files to the form data
       this.Files.forEach(file => {
         formData.append("Files", file, file.name)
@@ -84,10 +84,11 @@ export default {
       formData.append("description", this.description)
       formData.append("thumb", this.thumb)
 
-      Fetchy.PostFiles('http://localhost:3000/upload/add', formData)
-      .then(data => this.ResObj = data)
-      .then(this.$refs.form.reset())
-      .then(this.Files = [])
+
+      const POST = await Fetchy.PostFiles('http://localhost:3000/upload/add', formData)
+      this.ResObj = POST.data
+      this.$refs.form.reset()
+      this.Files = []
     },
   }
 }
