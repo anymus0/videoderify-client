@@ -1,12 +1,12 @@
 <template>
     <v-app>
       <v-container fluid>
-      <v-row>
+      <v-row v-if="!isError">
         <v-col cols="12">
           <v-row justify="center">
             <v-card
               v-for="Series in Serieses"
-              :key="Series.id"
+              :key="Series._id"
               class="ma-3 pb-8 zoomIn"
               dark>
               <v-img
@@ -16,7 +16,7 @@
               </v-img>
               <p class="title pt-6">{{ Series.name }}</p>
               <v-btn
-                :to="{path:`/episodes/${Series.id}`}"
+                :to="{path:`/episodes/${Series._id}`}"
                 color="red">
                 Watch it!
               </v-btn>
@@ -24,6 +24,12 @@
           </v-row>
         </v-col>
       </v-row>
+      <h1 v-if="isError">Network Error!</h1>
+      <h1
+        v-if="isEmpty"
+      >
+        None's uploaded anything yet :(
+      </h1>
       </v-container>
       <router-view/>
     </v-app>
@@ -35,13 +41,28 @@ export default {
   name: "SeriesList",
   data() {
     return {
-      Serieses: []
+      Serieses: undefined,
+      isError: false,
     }
   },
-  mounted() {
-    Fetchy.Get('http://localhost:3000/serieses').then(data => {
-      this.Serieses = data
-    })
+  async mounted() {
+    const AllSeries = await Fetchy.Get('http://localhost:3000/series/all')
+    this.Serieses = AllSeries
+    // Network error handling
+    if (this.Serieses.message !== undefined) {
+      if(this.Serieses.message.includes('NetworkError')) {
+        this.isError = true
+      }
+    }
+  },
+  computed: {
+    // Empty response handling
+    isEmpty() {
+      if (this.Serieses !== undefined) {
+        return this.Serieses.length === 0 && !this.isError
+      }
+      else return false
+    }
   }
 }
 </script>

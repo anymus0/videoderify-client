@@ -85,8 +85,8 @@ export default {
       formData.append("thumb", this.thumb)
 
 
-      const POST = await Fetchy.PostFiles('http://localhost:3000/upload/add', formData)
-      this.ResObj = POST.data
+      const POST = await Fetchy.PostFiles('http://localhost:3000/series/upload', formData)
+      this.ResObj = POST
       this.$refs.form.reset()
       this.Files = []
     },

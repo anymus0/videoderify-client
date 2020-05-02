@@ -61,12 +61,12 @@ export default {
   },
   computed: {
     dynURL() {
-      return `http://localhost:3000/video/${this.Series.Files[this.selected].filename}`
+      return `http://localhost:3000/series/video/${this.Series.Files[this.selected].filename}`
     }
   },
-  mounted() {
-    Fetchy.Get(`http://localhost:3000/serieses/${this.$route.params.id}`)
-    .then(data => this.Series = data)
+  async mounted() {
+    const response = await Fetchy.Get(`http://localhost:3000/series/get/${this.$route.params.id}`)
+    this.Series = response
   }
 }
 </script>
