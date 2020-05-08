@@ -4,13 +4,7 @@
       <h1>{{ Series.name }}</h1>
       <v-row>
         <v-col align="center">
-          <video
-            v-if="loaded()"
-            controls
-            width="700"
-            height="400"
-            :src="dynURL">
-          </video>
+          <VideoPlayer v-if="loaded()" :url="dynURL" />
         </v-col>
       </v-row>
       
@@ -30,6 +24,20 @@
           </v-row>
         </v-col>
       </v-row>
+      <v-row justify="center">
+        <v-col>
+          <a class="dwn" download :href="downloadSingleURL">
+            <v-btn color="indigo">
+              Download Selected episode
+            </v-btn>
+          </a>
+        </v-col>
+          <v-col>
+            <a :href="downloadAllURL" ref="allDownLink">
+              <v-btn color="indigo">Download all episodes</v-btn>
+            </a>
+          </v-col>
+      </v-row>
     </v-container>
     <router-view/>
   </v-app>
@@ -37,8 +45,12 @@
 
 <script>
 import {Fetchy} from '@/fetch/Fetchy.js'
+import VideoPlayer from './VideoPlayer'
 export default {
   name: "Episodes",
+  components: {
+    VideoPlayer
+  },
   data() {
     return {
       Series: {Files: [0]},
@@ -62,6 +74,12 @@ export default {
   computed: {
     dynURL() {
       return `http://localhost:3000/series/video/${this.Series.Files[this.selected].filename}`
+    },
+    downloadSingleURL() {
+      return `http://localhost:3000/series/download/episode/${this.Series.Files[this.selected].filename}`
+    },
+    downloadAllURL() {
+      return `http://localhost:3000/series/download/all/${this.Series._id}`
     }
   },
   async mounted() {
@@ -75,5 +93,9 @@ export default {
   .episode-list:hover {
     transform: scale(1.10);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 55px, rgba(0, 0, 0, 0.24) 0px 16px 28px;
+  }
+  .dwn {
+    text-decoration: none;
+    color: white;
   }
 </style>
