@@ -27,14 +27,14 @@
       <v-row justify="center">
         <v-col>
           <a class="dwn" download :href="downloadSingleURL">
-            <v-btn color="indigo">
+            <v-btn @click="notifDownload('file is')" color="indigo">
               Download Selected episode
             </v-btn>
           </a>
         </v-col>
           <v-col>
             <a :href="downloadAllURL" ref="allDownLink">
-              <v-btn color="indigo">Download all episodes</v-btn>
+              <v-btn @click="notifDownload('files are')" color="indigo">Download all episodes</v-btn>
             </a>
           </v-col>
       </v-row>
@@ -69,6 +69,9 @@ export default {
       else {
         return true
       }
+    },
+    notifDownload(type) {
+      this.$toast.info(`Your ${type} being processed, please wait...`)
     }
   },
   computed: {

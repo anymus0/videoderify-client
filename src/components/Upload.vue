@@ -39,7 +39,7 @@
               <v-btn
                 color="red"
                 text
-                @click="upload()"
+                @click="upload(); notifUpload();"
               >
                 Upload
               </v-btn>
@@ -85,11 +85,20 @@ export default {
       formData.append("thumb", this.thumb)
 
 
-      const POST = await Fetchy.PostFiles('http://localhost:3000/series/upload', formData)
-      this.ResObj = POST
+      const response = await Fetchy.PostFiles('http://localhost:3000/series/upload', formData)
+      this.ResObj = response
       this.$refs.form.reset()
       this.Files = []
+      // Notifications
+      if (response.status !== undefined) {
+        if (response.status) this.$toast.success('Yay! Your series was uploaded!')
+        else this.$toast.error('Oof... Something went wrong! Try again!')
+      }
+      else this.$toast.error('The problem is probably a problem on our end... This is problematic :(')
     },
+    notifUpload() {
+      this.$toast.warning('Uploading has started!')
+    }
   }
 }
 </script>

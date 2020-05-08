@@ -28,7 +28,7 @@
       <h1
         v-if="isEmpty"
       >
-        None's uploaded anything yet :(
+        No one's uploaded anything yet :(
       </h1>
       </v-container>
       <router-view/>
