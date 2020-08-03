@@ -11,6 +11,13 @@ You can find the [API here](https://github.com/anymus0/videoderify-API/)!
 
 If you have any suggestions feel free to make a pull request, or just modify the project for your needs!
 
+#### Homepage background
+To change the homepage background, change the *background-image* css property of the *#home* id inside **HomeComp.vue**
+
+#### Set the API server
+In order for the application to read/write data from/to the server we need to define the API's *protocol* (http/https), *address* (IP or domain), and *port*. <br>
+You can define these settings in the **APIserver** object inside **fetch/Fetchy.js**.
+
 ## Project setup
 ```
 npm install
