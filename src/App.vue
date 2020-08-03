@@ -30,5 +30,6 @@ import Nav from "./components/Nav.vue"
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: #181a1b;
+  color: #91b6c8;
 }
 </style>
