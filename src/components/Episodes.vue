@@ -86,7 +86,7 @@ export default {
     }
   },
   async mounted() {
-    const response = await Fetchy.Get(`http://localhost:3000/series/get/${this.$route.params.id}`)
+    const response = await Fetchy.Get(`series/get/${this.$route.params.id}`)
     this.Series = response
   }
 }

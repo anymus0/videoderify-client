@@ -46,7 +46,7 @@ export default {
     }
   },
   async mounted() {
-    const AllSeries = await Fetchy.Get('http://localhost:3000/series/all')
+    const AllSeries = await Fetchy.Get('series/all')
     this.Serieses = AllSeries
     // Network error handling
     if (this.Serieses.message !== undefined) {

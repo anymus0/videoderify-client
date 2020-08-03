@@ -1,6 +1,16 @@
+const APIserver = {
+  Protocol: "http",
+  Address: "0.0.0.0",
+  Port: 0
+}
+
 class Fetchy {
-  static async Get (link) {
+  static async Get (endpoint) {
     try {
+      // get the full request link
+      const link = `${APIserver.Protocol}://${APIserver.Address}:${APIserver.Port}/${endpoint}`
+
+      // start fetching
       const response = await window.fetch(link)
       if (!response.ok) {
         throw response.status
@@ -14,8 +24,12 @@ class Fetchy {
     }
   }
 
-  static async PostFiles (link, form) {
+  static async PostFiles (endpoint, form) {
     try {
+      // get the full request link
+      const link = `${APIserver.Protocol}://${APIserver.Address}:${APIserver.Port}/${endpoint}`
+
+      // define request options
       const options = {
         method: 'POST',
         headers: {
@@ -23,6 +37,8 @@ class Fetchy {
         },
         body: form
       }
+
+      // start fetching
       const response = await window.fetch(link, options)
       const data = await response.json()
       return data
