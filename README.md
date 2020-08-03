@@ -3,7 +3,7 @@ A video streaming platform made just for fun, out of curiosity and for learning 
 You can upload serieses and then watch them anywhere, anytime on anything as it is a web-based self-hosted SPA.<br>
 More features are yet to be implemented :)
 
-### STACK: MEAVN
+### STACK: MEVN
 - Client: VueJS
 - API: ExpressJS, MongoDB, web-server of your choice
 
