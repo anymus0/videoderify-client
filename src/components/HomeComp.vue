@@ -28,7 +28,7 @@ export default {
   background-size: cover;
 }
 #welcomeBox {
-  padding: 2rem 10rem 2rem 10rem;
+  padding: 2rem 20% 2rem 20%;
   background-color: #181a1bb2;
   color: #91b6c8;
 }
