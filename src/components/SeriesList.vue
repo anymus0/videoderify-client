@@ -50,7 +50,7 @@ export default {
     this.Serieses = AllSeries
     // Network error handling
     if (this.Serieses.message !== undefined) {
-      if(this.Serieses.message.includes('Failed')) {
+      if((this.Serieses.message.includes('Failed')) || (this.Serieses.message.includes('Error'))) {
         this.isError = true
       }
     }
