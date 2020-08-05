@@ -47,7 +47,7 @@
           </v-btn>
         </div>
       </template>
-      <span>You have to select the episodes to upload by an incremental order!</span>
+      <span>Here's a tip:<br>You have to select the episodes to upload by an incremental order!</span>
     </v-tooltip>
 
 
