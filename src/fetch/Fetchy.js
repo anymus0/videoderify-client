@@ -49,4 +49,4 @@ class Fetchy {
   }
 }
 
-export { Fetchy }
+export { Fetchy, APIserver }

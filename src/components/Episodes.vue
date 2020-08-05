@@ -45,6 +45,7 @@
 
 <script>
 import {Fetchy} from '@/fetch/Fetchy.js'
+import {APIserver} from '@/fetch/Fetchy.js'
 import VideoPlayer from './VideoPlayer'
 export default {
   name: "Episodes",
@@ -55,6 +56,7 @@ export default {
     return {
       Series: {Files: [0]},
       selected: 0,
+      APIurl: `${APIserver.Protocol}://${APIserver.Address}:${APIserver.Port}`
     }
   },
   methods: {
@@ -76,13 +78,13 @@ export default {
   },
   computed: {
     dynURL() {
-      return `http://localhost:3000/series/video/${this.Series.Files[this.selected].filename}`
+      return `${this.APIurl}/series/video/${this.Series.Files[this.selected].filename}`
     },
     downloadSingleURL() {
-      return `http://localhost:3000/series/download/episode/${this.Series.Files[this.selected].filename}`
+      return `${this.APIurl}/series/download/episode/${this.Series.Files[this.selected].filename}`
     },
     downloadAllURL() {
-      return `http://localhost:3000/series/download/all/${this.Series._id}`
+      return `${this.APIurl}/series/download/all/${this.Series._id}`
     }
   },
   async mounted() {
