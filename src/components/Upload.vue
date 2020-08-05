@@ -34,15 +34,27 @@
               >
               </v-text-field>
 
-              <v-file-input name="Files" @change="onAddFiles" color="red" counter small-chips multiple label="File input"></v-file-input>
+    <v-tooltip bottom color="red">
+      <template v-slot:activator="{ on, attrs }">
+        <div v-bind="attrs" v-on="on">
+          <v-file-input name="Files" @change="onAddFiles" color="red" counter small-chips multiple label="File input"></v-file-input>
+          <v-btn
+            color="red"
+            text
+            @click="upload(); notifUpload();"
+          >
+            Upload
+          </v-btn>
+        </div>
+      </template>
+      <span>You have to select the episodes to upload by an incremental order!</span>
+    </v-tooltip>
 
-              <v-btn
-                color="red"
-                text
-                @click="upload(); notifUpload();"
-              >
-                Upload
-              </v-btn>
+
+
+
+
+              
             </v-form>
           </v-col>
         </v-row>
