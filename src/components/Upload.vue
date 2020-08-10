@@ -41,7 +41,7 @@
           <v-btn
             color="red"
             text
-            @click="upload(); notifUpload();"
+            @click="notifUpload(); upload();"
           >
             Upload
           </v-btn>
@@ -68,9 +68,6 @@
 import {Fetchy} from '@/fetch/Fetchy.js'
 export default {
   name: "Upload",
-  components: {
-    //FilePond
-  },
   data: () => ({
     name: '',
     description: '',
@@ -106,7 +103,10 @@ export default {
         if (response.status) this.$toast.success('Yay! Your series was uploaded!')
         else this.$toast.error('Oof... Something went wrong! Try again!')
       }
-      else this.$toast.error('The problem is probably a problem on our end... This is problematic :(')
+      else {
+        this.$toast.clear()
+        this.$toast.error('The problem is probably a problem on our end... This is problematic :(')
+      }
     },
     notifUpload() {
       this.$toast.warning('Uploading has started!')

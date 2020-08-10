@@ -13,8 +13,8 @@
     "vue-filepond": "^6.0.2",
     "vue-router": "^3.3.4",
     "vue-style-loader": "^4.1.2",
-    "vuetify": "^2.3.7",
-    "vuetify-toast-snackbar": "^0.6.1"
+    "vue-toast-notification": "^0.5.0",
+    "vuetify": "^2.3.7"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",

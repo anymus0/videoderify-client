@@ -2,7 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
-import VuetifyToast from 'vuetify-toast-snackbar' // notification plugin
+
+import VueToast from 'vue-toast-notification'
+// Import any of available themes
+import 'vue-toast-notification/dist/theme-default.css'
+//import 'vue-toast-notification/dist/theme-sugar.css';
 
 new Vue({
   router,
@@ -10,19 +14,4 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-// Notification settings
-Vue.use(VuetifyToast, {
-  x: 'right', // default
-  y: 'bottom', // default
-  color: 'info', // default
-  timeout: 5000, // default
-  dismissable: true, // default
-  autoHeight: false, // default
-  multiLine: false, // default
-  vertical: false, // default
-  shorts: {
-    custom: {
-      color: 'purple'
-    }
-  }
-})
+Vue.use(VueToast)
