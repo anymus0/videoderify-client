@@ -8,20 +8,18 @@
         </v-col>
       </v-row>
       
-      <v-row>
-        <v-col cols="12">
-          <v-row justify="center">
-            <v-btn
-              color="red"
-              v-for="(Episode, index) in Series.Files"
-              :key="index"
-              @click="SelectEpisode(index)"
-              class="ml-4 episode-list"
-              :class="{'accent-4': selected === index}"
-            >
-              {{ index + 1 }}
-            </v-btn>
-          </v-row>
+      <v-row justify="center">
+        <v-col>
+          <v-btn
+            v-for="(Episode, index) in Series.Files"
+            :key="index"
+            color="red"
+            @click="SelectEpisode(index)"
+            class="ml-4 mt-4 episode-list"
+            :class="{'accent-4': selected === index}"
+          >
+            {{ index + 1 }}
+          </v-btn>
         </v-col>
       </v-row>
       <v-row justify="center">
