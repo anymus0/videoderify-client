@@ -100,6 +100,7 @@ export default {
       this.Files = []
       // Notifications
       if (response.status !== undefined) {
+        this.$toast.clear()
         if (response.status) this.$toast.success('Yay! Your series was uploaded!')
         else this.$toast.error('Oof... Something went wrong! Try again!')
       }
@@ -110,6 +111,14 @@ export default {
     },
     notifUpload() {
       this.$toast.warning('Uploading has started!')
+      this.$toast.open({
+        message: 'Uploading is in progess...',
+        type: 'info',
+        queue: true,
+        dismissible: false,
+        // duation is 1 hour
+        duration: 3600000
+      })
     }
   }
 }
