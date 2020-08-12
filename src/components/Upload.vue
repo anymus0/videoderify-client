@@ -34,27 +34,22 @@
               >
               </v-text-field>
 
-    <v-tooltip bottom color="red">
-      <template v-slot:activator="{ on, attrs }">
-        <div v-bind="attrs" v-on="on">
-          <v-file-input name="Files" @change="onAddFiles" color="red" counter small-chips multiple label="File input"></v-file-input>
-          <v-btn
-            color="red"
-            text
-            @click="notifUpload(); upload();"
-          >
-            Upload
-          </v-btn>
-        </div>
-      </template>
-      <span>Here's a tip:<br>You have to select the episodes to upload by an incremental order!</span>
-    </v-tooltip>
-
-
-
-
-
-              
+              <v-tooltip bottom color="red">
+                <template v-slot:activator="{ on, attrs }">
+                  <div v-bind="attrs" v-on="on">
+                    <v-file-input name="Files" @change="onAddFiles" color="red" counter small-chips multiple label="File input"></v-file-input>
+                    <v-btn
+                      :disabled="!(hasName && hasFile)"
+                      color="red"
+                      text
+                      @click="notifUpload(); upload();"
+                    >
+                      Upload
+                    </v-btn>
+                  </div>
+                </template>
+                <span>Here's a tip:<br>You have to select the episodes to upload by an incremental order!</span>
+              </v-tooltip>
             </v-form>
           </v-col>
         </v-row>
@@ -119,6 +114,14 @@ export default {
         // duation is 1 hour
         duration: 3600000
       })
+    }
+  },
+  computed: {
+    hasName: function () {
+      return (this.name !== '')
+    },
+    hasFile: function () {
+      return (this.Files[0] !== undefined)
     }
   }
 }
