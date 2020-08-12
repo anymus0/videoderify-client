@@ -3,8 +3,6 @@
     <video
       ref="videoPlayer"
       controls
-      width="700"
-      height="400"
       :src="url"
     >
     </video>
@@ -17,3 +15,10 @@ export default {
   props: ['url']
 }
 </script>
+
+<style lang="scss" scoped>
+  video {
+    width: 80%;
+    height: 60%;
+  }
+</style>
