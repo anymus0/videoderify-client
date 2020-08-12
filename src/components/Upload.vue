@@ -109,7 +109,6 @@ export default {
       this.$toast.open({
         message: 'Uploading is in progess...',
         type: 'info',
-        queue: true,
         dismissible: false,
         // duation is 1 hour
         duration: 3600000
@@ -126,8 +125,3 @@ export default {
   }
 }
 </script>
-
-
-<style lang="scss" scoped>
-
-</style>
