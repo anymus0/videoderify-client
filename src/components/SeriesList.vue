@@ -7,11 +7,11 @@
             <v-card
               v-for="Series in Serieses"
               :key="Series._id"
-              class="ma-3 pb-8 zoomIn"
+              class="ma-3 pb-8 zoomIn series-card"
               dark>
               <v-img
-                height="200"
-                width="200"
+                height="300"
+                width="300"
                 :src="Series.thumb">
               </v-img>
               <p class="title pt-6">{{ Series.name }}</p>
@@ -72,4 +72,21 @@ export default {
     transform: scale(1.10);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 55px, rgba(0, 0, 0, 0.24) 0px 16px 28px;
   }
+  .series-card {
+    p {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+    // mobile
+    width: 15rem;
+    // tablet
+    @media only screen and (min-width: 768px) {
+      width: 16rem;
+    }
+    // desktop
+    @media only screen and (min-width: 1200px) {
+      width: 17.5rem;
+    }
+  }
+
 </style>
