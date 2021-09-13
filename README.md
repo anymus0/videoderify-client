@@ -19,8 +19,9 @@ In order for the application to read/write data from/to the server we need to de
 You can define these settings in the **APIserver** object inside **fetch/Fetchy.js**.
 
 ## Project setup
+Install with *--legacy-peer-deps* for compatibility with legacy version of packages!
 ```
-npm install
+npm i --legacy-peer-deps
 ```
 
 ### Compiles and hot-reloads for development
